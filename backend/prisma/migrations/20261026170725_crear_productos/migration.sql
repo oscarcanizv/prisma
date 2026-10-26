@@ -1,0 +1,27 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- CreateTable
+CREATE TABLE [dbo].[Producto] (
+    [id] INT NOT NULL IDENTITY(1,1),
+    [nombre] NVARCHAR(150) NOT NULL,
+    [descripcion] NVARCHAR(500),
+    [precio] DECIMAL(18,2) NOT NULL,
+    [stock] INT NOT NULL CONSTRAINT [Producto_stock_df] DEFAULT 0,
+    [creadoEn] DATETIME2 NOT NULL CONSTRAINT [Producto_creadoEn_df] DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT [Producto_pkey] PRIMARY KEY CLUSTERED ([id])
+);
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH
