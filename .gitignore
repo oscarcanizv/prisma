@@ -1,0 +1,18 @@
+# Dependencias
+**/node_modules/
+
+# Archivos compilados
+**/dist/
+**/coverage/
+
+# Variables de entorno
+**/.env
+**/.env.*
+!**/.env.example
+
+# Archivos locales
+*.log
+.DS_Store
+Thumbs.db
+
+backend/src/generated/prisma/
