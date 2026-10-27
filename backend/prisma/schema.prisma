@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -13,5 +14,13 @@ model Producto {
   descripcion String?  @db.NVarChar(500)
   precio      Decimal  @db.Decimal(18, 2)
   stock       Int      @default(0)
+  creadoEn    DateTime @default(now())
+}
+
+
+model Usuario {
+  id          Int      @id @default(autoincrement())
+  nombre      String   @db.NVarChar(150)
+  descripcion String?  @db.NVarChar(500)
   creadoEn    DateTime @default(now())
 }
